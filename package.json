@@ -48,6 +48,6 @@
     "shortcake": "1.2.8"
   },
   "dependencies": {
-    "sake-core": "1.3.2"
+    "sake-core": "1.3.3"
   }
 }
