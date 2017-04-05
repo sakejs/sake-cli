@@ -11,7 +11,7 @@ npm install -g sake-cli
 Note: The job of the `sake` command is to load and run the version of Sake you
 have installed locally to your project, irrespective of its version.
 
-## Installing sake-cli locally
+## Installing sake locally
 
 If you prefer the idiomatic Node.js method to get started with a project (`npm
 install && npm test`) then install `sake` locally with `npm install sake-cli
