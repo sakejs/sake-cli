@@ -48,8 +48,5 @@
     "coffee-script": "^1.9.3",
     "mocha": "^3.2.0",
     "sake-core": "1.3.6"
-  },
-  "dependencies": {
-    "sake-core": "1.3.5"
   }
 }
