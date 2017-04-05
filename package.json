@@ -1,0 +1,53 @@
+{
+  "name": "sake-cli",
+  "version": "0.2.0",
+  "description": "The Sake command line interface.",
+  "homepage": "http://github.com/sakejs/sake-cli",
+  "bugs": "http://github.com/sakejs/sake-cli/issues",
+  "keywords": [
+    "async",
+    "build",
+    "bundle",
+    "sake",
+    "sakefile",
+    "cli",
+    "coffee",
+    "coffee-script",
+    "make",
+    "minify",
+    "reload",
+    "sake",
+    "sakefile",
+    "scaffold",
+    "server",
+    "task",
+    "test",
+    "tool",
+    "uglify",
+    "watch"
+  ],
+  "bin": "bin/sake",
+  "scripts": {
+    "test": "sake test"
+  },
+  "author": "Hanzo, Inc. <hi@hanzo.io>",
+  "license": "BSD-3-Clause",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/sakejs/sake-cli"
+  },
+  "devDependencies": {
+    "cake-bundle": "0.2.21",
+    "cake-outdated": "0.1.18",
+    "cake-publish": "0.1.1",
+    "cake-test": "0.1.0",
+    "cake-version": "0.1.3",
+    "chai": "^3.2.0",
+    "coffee-script": "^1.9.3",
+    "mocha": "^2.2.5",
+    "shortcake": "1.1.11"
+  },
+  "dependencies": {
+    "sake-core": "1.3.1"
+  }
+}
