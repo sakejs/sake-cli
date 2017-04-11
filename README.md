@@ -1,4 +1,12 @@
 # sake-cli
+
+[![npm][npm-img]][npm-url]
+[![build][build-img]][build-url]
+[![dependencies][dependencies-img]][dependencies-url]
+[![downloads][downloads-img]][downloads-url]
+[![license][license-img]][license-url]
+[![chat][chat-img]][chat-url]
+
 > The Sake command line interface.
 
 Install this globally and you'll have access to the `sake` command anywhere on
@@ -20,5 +28,23 @@ task: `"scripts": { "test": "sake test" }`. Now `npm test` will use the locally
 installed `./node_modules/.bin/sake` executable to run your Sake tasks.
 
 To read more about npm scripts, please visit the [npm docs][npm-docs].
+
+## License
+[BSD][license-url]
+
+[build-img]:        https://img.shields.io/travis/sakejs/sake-cli.svg
+[build-url]:        https://travis-ci.org/sakejs/sake-cli
+[chat-img]:         https://badges.gitter.im/join-chat.svg
+[chat-url]:         https://gitter.im/sakejs/hi
+[coverage-img]:     https://coveralls.io/repos/sakejs/sake-cli/badge.svg?branch=master&service=github
+[coverage-url]:     https://coveralls.io/github/sakejs/sake-cli?branch=master
+[dependencies-img]: https://david-dm.org/sakejs/sake-cli.svg
+[dependencies-url]: https://david-dm.org/sakejs/sake-cli
+[downloads-img]:    https://img.shields.io/npm/dm/sake-cli.svg
+[downloads-url]:    http://badge.fury.io/js/sake-cli
+[license-img]:      https://img.shields.io/npm/l/sake-cli.svg
+[license-url]:      https://github.com/sakejs/sake-cli/blob/master/LICENSE
+[npm-img]:          https://img.shields.io/npm/v/sake-cli.svg
+[npm-url]:          https://www.npmjs.com/package/sake-cli
 
 [npm-docs]: https://docs.npmjs.com/misc/scripts
