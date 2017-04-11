@@ -30,6 +30,9 @@
     "sake": "bin/sake"
   },
   "scripts": {
+    "build": "sake build",
+    "prepublishOnly": "sake build",
+    "pretest": "sake build",
     "test": "sake test"
   },
   "author": "Hanzo, Inc. <hi@hanzo.io>",
@@ -39,14 +42,15 @@
     "url": "http://github.com/sakejs/sake-cli"
   },
   "devDependencies": {
-    "cake-bundle": "0.2.21",
-    "cake-outdated": "0.1.18",
-    "cake-publish": "0.1.10",
-    "cake-test": "0.1.0",
-    "cake-version": "0.1.15",
-    "chai": "^3.2.0",
     "coffee-script": "^1.9.3",
-    "mocha": "^3.2.0",
-    "sake-core": "1.3.6"
+    "sake-bundle": "0.4.11",
+    "sake-core": "1.3.6",
+    "sake-outdated": "0.1.20",
+    "sake-test": "0.1.4",
+    "sake-version": "0.1.18"
+  },
+  "dependencies": {
+    "minimist": "1.2.0",
+    "reify": "0.6.8"
   }
 }

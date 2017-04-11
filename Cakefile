@@ -1,10 +1,10 @@
-use 'cake-bundle'
-use 'cake-publish'
-use 'cake-test'
-use 'cake-version'
-use 'cake-outdated'
+use 'sake-bundle'
+use 'sake-publish'
+use 'sake-test'
+use 'sake-version'
+use 'sake-outdated'
 
-task 'build', 'Build module and bundled checkout.js', ->
+task 'build', 'Build project, '->
   bundle.write
     entry:  'src/index.coffee'
     format: 'cli'
