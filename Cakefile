@@ -9,5 +9,4 @@ task 'build', 'build project', ->
     entry:  'src/index.coffee'
     format: 'cli'
     compilers:
-      coffee:
-        version: 1
+      coffee: version: 1
