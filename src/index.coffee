@@ -7,49 +7,6 @@ import registerCoffee from './utils'
 
 registerCoffee() # Register .coffee extension
 
-# Keep track of the list of defined tasks, the accepted options, and so on.
-tasks     = {}
-options   = {}
-switches  = []
-oparse    = null
-
-# Mixin the top-level Cake functions for Cakefiles to use directly.
-helpers.extend global,
-
-  # Define a Cake task with a short name, an optional sentence description,
-  # and the function to run as the action itself.
-  task: (name, description, action) ->
-    [action, description] = [description, action] unless action
-    tasks[name] = {name, description, action}
-
-  # Define an option that the Cakefile accepts. The parsed options hash,
-  # containing all of the command-line options passed, will be made available
-  # as the first argument to the action.
-  option: (letter, flag, description) ->
-    switches.push [letter, flag, description]
-
-  # Invoke another task in the current Cakefile.
-  invoke: (name) ->
-    missingTask name unless tasks[name]
-    tasks[name].action options
-
-# Run `cake`. Executes all of the tasks you pass, in order. Note that Node's
-# asynchrony may cause tasks to execute in a different order than you'd expect.
-# If no tasks are passed, print the help screen. Keep a reference to the
-# original directory name, when running Cake tasks from subdirectories.
-exports.run = ->
-  global.__originalDirname = fs.realpathSync '.'
-  process.chdir cakefileDirectory __originalDirname
-  args = process.argv[2..]
-  CoffeeScript.run fs.readFileSync('Cakefile').toString(), filename: 'Cakefile'
-  oparse = new optparse.OptionParser switches
-  return printTasks() unless args.length
-  try
-    options = oparse.parse(args)
-  catch e
-    return fatalError "#{e}"
-  invoke arg for arg in options.arguments
-
 # Display the list of Cake tasks in a format similar to `rake -T`
 printTasks = ->
   relative = path.relative or path.resolve
