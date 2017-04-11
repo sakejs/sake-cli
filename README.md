@@ -32,10 +32,12 @@ To read more about npm scripts, please visit the [npm docs][npm-docs].
 ## License
 [BSD][license-url]
 
+[npm-docs]: https://docs.npmjs.com/misc/scripts
+
 [build-img]:        https://img.shields.io/travis/sakejs/sake-cli.svg
 [build-url]:        https://travis-ci.org/sakejs/sake-cli
 [chat-img]:         https://badges.gitter.im/join-chat.svg
-[chat-url]:         https://gitter.im/sakejs/hi
+[chat-url]:         https://gitter.im/sakejs/chat
 [coverage-img]:     https://coveralls.io/repos/sakejs/sake-cli/badge.svg?branch=master&service=github
 [coverage-url]:     https://coveralls.io/github/sakejs/sake-cli?branch=master
 [dependencies-img]: https://david-dm.org/sakejs/sake-cli.svg
@@ -46,5 +48,3 @@ To read more about npm scripts, please visit the [npm docs][npm-docs].
 [license-url]:      https://github.com/sakejs/sake-cli/blob/master/LICENSE
 [npm-img]:          https://img.shields.io/npm/v/sake-cli.svg
 [npm-url]:          https://www.npmjs.com/package/sake-cli
-
-[npm-docs]: https://docs.npmjs.com/misc/scripts
