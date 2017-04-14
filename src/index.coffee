@@ -4,7 +4,7 @@ import sake        from 'sake-core'
 import yargs       from 'yargs'
 import {transform} from 'reify/lib/compiler'
 
-import {findSakefile, printTasks} from './utils'
+import {findSakefile, missingTask, printTasks} from './utils'
 
 
 loadCakefile = (dir, file) ->
@@ -60,7 +60,7 @@ export run = ->
 
   # Bail if missing task
   for task in tasks
-    unless task in sake.tasks
+    unless sake.tasks[task]?
       missingTask task
 
   # Let's drink
