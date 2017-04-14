@@ -65,5 +65,6 @@ export run = ->
 
   # Let's drink
   sake.serial tasks, argv, (err) ->
-    console.error err if err?
-    process.exit 1
+    if err?
+      console.error err
+      process.exit 1
