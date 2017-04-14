@@ -1,4 +1,6 @@
 import fs          from 'fs'
+import path        from 'path'
+
 import findCoffee  from 'find-coffee'
 import sake        from 'sake-core'
 import yargs       from 'yargs'
@@ -19,8 +21,13 @@ loadCakefile = (dir, file) ->
 
 
 loadSakefile = (dir, file) ->
-  # Require Sakefile directly
-  require path.join dir, file
+  try
+    # Require Sakefile directly
+    require path.join dir, file
+  catch err
+    throw err unless (path.extname file) == ''
+    throw err unless err.constructor.name == 'SyntaxError'
+    loadCakefile dir, file
 
 
 # Run `sake`. Executes all of the tasks you pass, in order.  If no tasks are
@@ -64,7 +71,7 @@ export run = ->
       missingTask task
 
   # Let's drink
-  sake.serial tasks, argv, (err) ->
+  sake.invoke tasks, argv, (err) ->
     if err?
       console.error err
       process.exit 1
