@@ -1,4 +1,5 @@
 import path from 'path'
+import fs   from 'fs'
 
 import {tasks} from 'sake-core'
 
@@ -26,6 +27,8 @@ export printTasks = (dir, file) ->
   filePath = path.join relative(__originalDirname, process.cwd()), file
 
   console.log "#{filePath} defines the following tasks:\n"
+
+  delete tasks.has
 
   for name, task of tasks
     spaces = 20 - name.length
