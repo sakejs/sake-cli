@@ -38,7 +38,8 @@ export run = ->
 
   # Process arguments
   argv = yargs.argv
-  argv.arguments = argv._  # for backwards compatibility with cake
+  argv.arguments = argv._  # For backwards compatibility with cake
+  tasks = argv._.slice 0   # Create a copy of tasks to execute
 
   if argv.debug
     process.env.VERBOSE = true
@@ -58,11 +59,11 @@ export run = ->
   return printTasks dir, file unless argv._.length
 
   # Bail if missing task
-  for task in argv._
-    unless sake.tasks.has task
+  for task in tasks
+    unless task in sake.tasks
       missingTask task
 
   # Let's drink
-  sake.serial argv._, argv, (err) ->
+  sake.serial tasks, argv, (err) ->
     console.error err if err?
     process.exit 1
