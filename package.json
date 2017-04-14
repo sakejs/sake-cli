@@ -34,7 +34,7 @@
   "scripts": {
     "build": "handroll src/cli.coffee --cli -o bin/sake",
     "prepublishOnly": "sake build",
-    "pretest": "sake build",
+    "pretest": "handroll src/cli.coffee --cli -o bin/sake",
     "test": "sake test"
   },
   "author": "Hanzo, Inc. <hi@hanzo.io>",
