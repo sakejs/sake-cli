@@ -37,9 +37,11 @@ export run = ->
   process.chdir dir
 
   # Process arguments
-  argv = Object.assign {}, yargs.argv
+  argv = yargs.argv
   argv.arguments = argv._  # for backwards compatibility with cake
-  console.log argv
+
+  if argv.debug
+    process.env.VERBOSE = true
 
   # Install Sake globals
   sake.install()
