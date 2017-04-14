@@ -38,6 +38,7 @@ export run = ->
 
   # Process arguments
   argv = minimist process.argv[2..]
+  argv.arguments = argv._  # for backwards compatibility with cake
 
   # Install Sake globals
   sake.install()
