@@ -30,7 +30,10 @@ export printTasks = (dir, file) ->
 
   delete tasks.has
 
-  for name, task of tasks
+  names = Object.keys(tasks).sort()
+
+  for name in names
+    task   = tasks[name]
     spaces = 20 - name.length
     spaces = if spaces > 0 then Array(spaces + 1).join(' ') else ''
     desc   = if task.description then "# #{task.description}" else ''
