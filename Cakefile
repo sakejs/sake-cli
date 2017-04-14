@@ -6,7 +6,8 @@ use 'sake-version'
 
 task 'build', 'build project', ->
   b = new Bundle
-    entry:  'src/cli.coffee'
+    entry:    'src/cli.coffee'
+    commonjs: true
     compilers:
       coffee: version: 1
 
