@@ -1,0 +1,107 @@
+fs = require 'fs'
+
+option '-v', '--verbose', 'Verbose option'
+
+task 'options', '', (options) ->
+  console.log options.verbose
+
+task 'options-empty', '', (options) ->
+  console.log options
+
+task 'no-description', ->
+  console.log 'no-description'
+
+task 'no-description-deps', ['no-description'], ->
+  console.log 'no-description-deps'
+
+task 'no-description-deps-only', ['no-description-deps']
+
+task 'async', '', (done) ->
+  console.log done
+  done()
+
+task 'async-options', '', (options, done) ->
+  console.log options
+  done()
+
+task 'delay:0', '', ->
+  console.log 'delay:0'
+
+task 'delay:10', '', (done) ->
+  setTimeout ->
+    console.log 'delay:10'
+    done()
+  , 10
+
+task 'delay:20', '', (options, done) ->
+  setTimeout ->
+    console.log 'delay:20'
+    done()
+  , 200
+
+task 'nested', '', ->
+  invoke 'delay:20', ->
+    invoke 'delay:10', ->
+      invoke 'delay:0', ->
+        console.log 'nested'
+
+task 'serial', '', ->
+  invoke ['delay:20', 'delay:10', 'delay:0'], ->
+    console.log 'serial'
+
+task 'parallel', '', ->
+  invoke.parallel ['delay:20', 'delay:10', 'delay:0'], ->
+    console.log 'parallel'
+
+task 'promise', '', ->
+  invoke 'delay:0'
+
+task 'promise-nested', '', ->
+  invoke 'promise'
+
+task 'gen', '', ->
+  yield console.log 'gen-1'
+  yield console.log 'gen-2'
+  yield console.log 'gen-3'
+
+task 'gen-promise', '', ->
+  n = 0
+  promise = ->
+    new Promise (resolve, reject) ->
+      n++
+      setTimeout (-> resolve 'promise-' + n), 1
+
+  value = yield promise()
+  console.log value
+
+  value = yield promise()
+  console.log value
+
+  value = yield promise()
+  console.log value
+
+task 'gen-mz', '', ->
+  mfs = require 'mz/fs'
+
+  exists = yield mfs.exists __filename
+  console.log exists
+  exists = yield mfs.exists 'does not exist'
+  console.log exists
+  exists = yield mfs.exists __filename
+  console.log exists
+  exists = yield mfs.exists 'does not exist'
+  console.log exists
+
+task 'gen-bluebird', '', ->
+  Promise = require 'bluebird'
+  pfs = Promise.promisifyAll require 'fs'
+
+  yield (pfs.statAsync 'does not exist').catch (err) ->
+    console.log 'does not exist'
+  stat = yield pfs.statAsync __filename
+  console.log 'exists'
+
+  yield (pfs.statAsync 'does not exist').catch (err) ->
+    console.log 'does not exist'
+  stat = yield pfs.statAsync __filename
+  console.log 'exists'

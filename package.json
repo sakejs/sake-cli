@@ -32,7 +32,7 @@
   "main": "lib/sake.js",
   "module": "lib/sake.mjs",
   "scripts": {
-    "build": "sake build",
+    "build": "handroll src/cli.coffee --cli -o bin/sake",
     "prepublishOnly": "sake build",
     "pretest": "sake build",
     "test": "sake test"
@@ -50,7 +50,9 @@
     "yargs": "7.1.0"
   },
   "devDependencies": {
+    "bluebird": "3.5.0",
     "coffee-script": "1.12.5",
+    "mz": "2.6.0",
     "sake-bundle": "0.4.14",
     "sake-outdated": "0.1.20",
     "sake-publish": "0.1.12",
