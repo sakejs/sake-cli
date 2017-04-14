@@ -6,12 +6,11 @@ use 'sake-version'
 
 task 'build', 'build project', ->
   b = new Bundle
-    entry:    'src/cli.coffee'
-    commonjs: true
+    entry: 'src/cli.coffee'
     compilers:
       coffee: version: 1
 
   Promise.all [
-    b.write format:  'cli'
+    b.write format:  'cli', executable: true
     b.write formats: ['cjs', 'es']
   ]
