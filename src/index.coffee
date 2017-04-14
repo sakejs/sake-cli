@@ -1,36 +1,55 @@
-import fs       from 'fs'
-import path     from 'path'
-import minimist from 'minimist'
+import fs                from 'fs'
+import findCoffee        from 'find-coffee'
+import minimist          from 'minimist'
+import {install, invoke} from 'sake-core'
+import {transform}       from 'reify/lib/compiler'
 
-import {install}      from 'sake-core'
-import registerCoffee from './utils'
+import {findSakefile, printTasks} from './utils'
 
-registerCoffee() # Register .coffee extension
 
-# Display the list of Cake tasks in a format similar to `rake -T`
-printTasks = ->
-  relative = path.relative or path.resolve
-  cakefilePath = path.join relative(__originalDirname, process.cwd()), 'Cakefile'
-  console.log "#{cakefilePath} defines the following tasks:\n"
-  for name, task of tasks
-    spaces = 20 - name.length
-    spaces = if spaces > 0 then Array(spaces + 1).join(' ') else ''
-    desc   = if task.description then "# #{task.description}" else ''
-    console.log "cake #{name}#{spaces} #{desc}"
-  console.log oparse.help() if switches.length
+loadCakefile = (dir, file) ->
+  # Find local copy of CoffeeScript
+  coffee = findCoffee()
 
-# Print an error and exit when attempting to use an invalid task/option.
-fatalError = (message) ->
-  console.error message + '\n'
-  console.log 'To see a list of all tasks/options, run "cake"'
-  process.exit 1
+  # Register .coffee extension
+  coffee.register()
 
-missingTask = (task) -> fatalError "No such task: #{task}"
+  # Compile and run Cakefile
+  CoffeeScript.run fs.readFileSync(file).toString(), filename: file
 
-# When `cake` is invoked, search in the current and all parent directories
-# to find the relevant Cakefile.
-cakefileDirectory = (dir) ->
-  return dir if fs.existsSync path.join dir, 'Cakefile'
-  parent = path.normalize path.join dir, '..'
-  return cakefileDirectory parent unless parent is dir
-  throw new Error "Cakefile not found in #{process.cwd()}"
+
+loadSakefile = (dir, file) ->
+  # Require Sakefile directly
+  require path.join dir, file
+
+
+# Run `sake`. Executes all of the tasks you pass, in order.  If no tasks are
+# passed, print the help screen. Keep a reference to the original directory
+# name, when running Cake tasks from subdirectories.
+export run = ->
+  # Save record of original directory
+  global.__originalDirname = fs.realpathSync '.'
+
+  # Search for sakefile
+  {dir, file} = findSakefile __originalDirname
+
+  # Change dir to match Sakefile location
+  process.chdir dir
+
+  # Process arguments
+  argv = minimist process.argv[2..]
+
+  # Bail if no tasks specified
+  return printTasks() unless argv._.length
+
+  # Install Sake globals
+  sake.install()
+
+  # Handle both Cakefiles and Sakefiles
+  switch file
+    when 'Cakefile'
+      loadCakefile dir, file
+    when 'Sakefile', 'Sakefile.js'
+      loadSakefile dir, file
+
+  sake.invoke task for tasks in argv._
