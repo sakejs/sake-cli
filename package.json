@@ -29,6 +29,8 @@
   "bin": {
     "sake": "bin/sake"
   },
+  "main": "lib/sake.js",
+  "module": "lib/sake.mjs",
   "scripts": {
     "build": "sake build",
     "prepublishOnly": "sake build",
