@@ -42,6 +42,7 @@ export run = ->
 
   if argv.debug
     process.env.VERBOSE = true
+    console.log argv
 
   # Install Sake globals
   sake.install()
@@ -63,5 +64,5 @@ export run = ->
 
   # Let's drink
   sake.serial argv._, argv, (err) ->
-    console.log err if err?
-    console.dir(argv)
+    console.error err if err?
+    process.exit 1
