@@ -15,7 +15,7 @@ loadCakefile = (dir, file) ->
   coffee.register()
 
   # Compile and run Cakefile
-  CoffeeScript.run fs.readFileSync(file).toString(), filename: file
+  coffee.run fs.readFileSync(file).toString(), filename: file
 
 
 loadSakefile = (dir, file) ->
@@ -39,9 +39,6 @@ export run = ->
   # Process arguments
   argv = minimist process.argv[2..]
 
-  # Bail if no tasks specified
-  return printTasks() unless argv._.length
-
   # Install Sake globals
   sake.install()
 
@@ -52,4 +49,14 @@ export run = ->
     when 'Sakefile', 'Sakefile.js'
       loadSakefile dir, file
 
-  sake.invoke task for tasks in argv._
+  # Bail if no tasks specified
+  return printTasks dir, file unless argv._.length
+
+  # Bail if missing task
+  for task in argv._
+    unless sake.tasks.has task
+      missingTask task
+
+  # Let's drink
+  sake.serial argv._, argv, ->
+    console.log 'done'
