@@ -58,5 +58,5 @@ export run = ->
       missingTask task
 
   # Let's drink
-  sake.serial argv._, argv, ->
-    console.log 'done'
+  sake.serial argv._, argv, (err) ->
+    console.log err if err?
