@@ -1,7 +1,7 @@
 import fs          from 'fs'
 import findCoffee  from 'find-coffee'
-import minimist    from 'minimist'
 import sake        from 'sake-core'
+import yargs       from 'yargs'
 import {transform} from 'reify/lib/compiler'
 
 import {findSakefile, printTasks} from './utils'
@@ -37,7 +37,7 @@ export run = ->
   process.chdir dir
 
   # Process arguments
-  argv = minimist process.argv[2..]
+  argv = yargs process.argv[2..]
   argv.arguments = argv._  # for backwards compatibility with cake
 
   # Install Sake globals
@@ -61,3 +61,4 @@ export run = ->
   # Let's drink
   sake.serial argv._, argv, (err) ->
     console.log err if err?
+    console.dir(argv)
