@@ -44,7 +44,7 @@
     "url": "http://github.com/sakejs/sake-cli"
   },
   "dependencies": {
-    "sake-core": "1.3.9",
+    "sake-core": "1.3.10",
     "find-coffee": "0.1.0",
     "minimist": "1.2.0",
     "reify": "0.7.3"
