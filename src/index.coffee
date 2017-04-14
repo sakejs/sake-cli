@@ -1,8 +1,8 @@
-import fs                from 'fs'
-import findCoffee        from 'find-coffee'
-import minimist          from 'minimist'
-import {install, invoke} from 'sake-core'
-import {transform}       from 'reify/lib/compiler'
+import fs          from 'fs'
+import findCoffee  from 'find-coffee'
+import minimist    from 'minimist'
+import sake        from 'sake-core'
+import {transform} from 'reify/lib/compiler'
 
 import {findSakefile, printTasks} from './utils'
 
