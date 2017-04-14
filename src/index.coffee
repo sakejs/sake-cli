@@ -37,7 +37,7 @@ export run = ->
   process.chdir dir
 
   # Process arguments
-  argv = yargs.parse process.argv[2..]
+  argv = yargs.argv
   argv.arguments = argv._  # for backwards compatibility with cake
 
   # Install Sake globals
