@@ -53,10 +53,10 @@
     "bluebird": "3.5.0",
     "coffee-script": "1.12.5",
     "mz": "2.6.0",
-    "sake-bundle": "0.4.15",
+    "sake-bundle": "0.4.16",
     "sake-outdated": "0.1.20",
     "sake-publish": "0.1.12",
-    "sake-test": "0.1.4",
+    "sake-test": "0.1.5",
     "sake-version": "0.1.18"
   }
 }
