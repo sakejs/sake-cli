@@ -7,6 +7,7 @@ import yargs       from 'yargs'
 import {transform} from 'reify/lib/compiler'
 
 import {findSakefile, missingTask, printTasks} from './utils'
+import {version} from '../package.json'
 
 
 loadCakefile = (dir, file) ->
@@ -51,6 +52,10 @@ export run = ->
   if argv.debug
     process.env.VERBOSE = true
     console.log argv
+
+  if argv.version or argv.v and not argv._.length
+    console.log 'sake-cli:',  version
+    console.log 'sake-core:', sake.version
 
   # Install Sake globals
   sake.install()
