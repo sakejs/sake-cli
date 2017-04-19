@@ -55,8 +55,7 @@ export run = ->
 
   # Print Sake version
   if argv.version or argv.v and not argv._.length
-    console.log 'sake-cli: ', version
-    console.log 'sake-core:', sake.version
+    console.log 'cli:', version, 'core:', sake.version
     process.exit 0
 
   # Install Sake globals
