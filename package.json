@@ -45,8 +45,8 @@
   },
   "dependencies": {
     "find-coffee": "0.1.0",
-    "reify": "0.7.4",
-    "sake-core": "1.3.18",
+    "reify": "0.7.5",
+    "sake-core": "1.3.19",
     "yargs": "7.1.0"
   },
   "devDependencies": {
@@ -54,7 +54,7 @@
     "coffee-script": "1.12.5",
     "mz": "2.6.0",
     "sake-bundle": "0.4.16",
-    "sake-outdated": "0.1.20",
+    "sake-outdated": "0.1.21",
     "sake-publish": "0.1.12",
     "sake-test": "0.1.5",
     "sake-version": "0.1.18"
