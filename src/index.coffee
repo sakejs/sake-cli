@@ -53,9 +53,11 @@ export run = ->
     process.env.VERBOSE = true
     console.log argv
 
+  # Print Sake version
   if argv.version or argv.v and not argv._.length
-    console.log 'sake-cli:',  version
+    console.log 'sake-cli: ', version
     console.log 'sake-core:', sake.version
+    process.exit 0
 
   # Install Sake globals
   sake.install()
