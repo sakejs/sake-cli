@@ -46,7 +46,7 @@
   "dependencies": {
     "find-coffee": "0.1.0",
     "reify": "0.7.5",
-    "sake-core": "1.3.19",
+    "sake-core": "1.3.21",
     "yargs": "7.1.0"
   },
   "devDependencies": {
