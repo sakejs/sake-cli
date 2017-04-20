@@ -11,7 +11,7 @@ export preferLocalModules = ->
 # When `sake` is invoked, search in the current and all parent directories
 # to find the relevant Sakefile (or Cakefile).
 export findSakefile = (dir) ->
-  for file in ['Sakefile', 'Sakefile.js', 'Cakefile']
+  for file in ['Sakefile', 'Sakefile.js', 'Cakefile', 'Sakefile.ts']
     return file: file, dir: dir if fs.existsSync path.join dir, file
 
   # Recurse up the directory structure
