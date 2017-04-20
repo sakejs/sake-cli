@@ -32,7 +32,7 @@
   "main": "lib/sake.js",
   "module": "lib/sake.mjs",
   "scripts": {
-    "build": "handroll src/cli.coffee --cli -o bin/sake",
+    "build": "handroll src/cli.coffee --cli --executable -o bin/sake",
     "prepublishOnly": "npm run build",
     "pretest": "npm run build",
     "test": "bin/sake test"

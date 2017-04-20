@@ -7,7 +7,7 @@ exec = require('executive').quiet
 
 # path to sake
 cwd = __dirname
-bin = require.resolve 'sake-cli/bin/sake'
+bin = require.resolve '../bin/sake'
 
 # Helper to run sake in tests
 run = (cmd) ->
