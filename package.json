@@ -33,9 +33,9 @@
   "module": "lib/sake.mjs",
   "scripts": {
     "build": "handroll src/cli.coffee --cli -o bin/sake",
-    "prepublishOnly": "sake build",
+    "prepublishOnly": "npm build",
     "pretest": "npm build",
-    "test": "sake test"
+    "test": "bin/sake test"
   },
   "author": "Hanzo, Inc. <hi@hanzo.io>",
   "license": "BSD-3-Clause",
