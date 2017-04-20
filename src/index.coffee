@@ -10,6 +10,24 @@ import {findSakefile, missingTask, printTasks} from './utils'
 import {version} from '../package.json'
 
 
+# Attempt to load cached, pre-compiled Sakefile
+loadCached = (dir, file) ->
+  cacheFile = path.join dir, '.sake', 'Sakefile.js'
+
+  try
+    cached = fs.statSync cacheFile
+    source = fs.statSync path.join dir, file
+  catch err
+    return false if err.code == 'ENOENT'
+    throw err
+
+  if cached.mtime > source.mtime
+    require cacheFile
+    true
+  else
+    false
+
+
 loadCakefile = (dir, file) ->
   # Find local copy of CoffeeScript
   coffee = findCoffee()
@@ -29,6 +47,12 @@ loadSakefile = (dir, file) ->
     throw err unless (path.extname file) == ''
     throw err unless err.constructor.name == 'SyntaxError'
     loadCakefile dir, file
+
+
+loadSakefileTs = (dir, file) ->
+  # Write straight to cache
+  exec.sync 'tsc --outFile .sake/Sakefile.js Sakefile.ts'
+  loadCached dir, file
 
 
 # Run `sake`. Executes all of the tasks you pass, in order.  If no tasks are
@@ -61,12 +85,17 @@ export run = ->
   # Install Sake globals
   sake.install()
 
-  # Handle both Cakefiles and Sakefiles
-  switch file
-    when 'Cakefile'
-      loadCakefile dir, file
-    when 'Sakefile', 'Sakefile.js'
-      loadSakefile dir, file
+  # Try and use cached, compiled Sakefile
+  unless loadCached dir, file
+
+    # Fallback to appropriate loader
+    switch file
+      when 'Cakefile'
+        loadCakefile dir, file
+      when 'Sakefile', 'Sakefile.js'
+        loadSakefile dir, file
+      when 'Sakefile.ts'
+        loadSakefileTs dir, file
 
   # Bail if no tasks specified
   return printTasks dir, file unless argv._.length
