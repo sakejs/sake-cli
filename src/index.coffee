@@ -1,5 +1,6 @@
-import fs          from 'fs'
-import path        from 'path'
+import fs   from 'fs'
+import path from 'path'
+import vm   from 'vm'
 
 import findCoffee  from 'find-coffee'
 import sake        from 'sake-core'
@@ -22,7 +23,8 @@ loadCached = (dir, file) ->
     throw err
 
   if cached.mtime > source.mtime
-    require cacheFile
+    script  = new vm.Script fs.readFileSync cacheFile
+    script.runInThisContext()
     true
   else
     false
