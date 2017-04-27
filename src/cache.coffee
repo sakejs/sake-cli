@@ -29,9 +29,7 @@ read = (dir) ->
 # Write cache file
 write = (dir, code) ->
   mkdirp cacheDir dir
-  console.log 'code', code
   transformed = transform code
-  console.log 'transformed', code
   fs.writeFileSync (cachePath dir), transformed, 'utf8'
 
 
