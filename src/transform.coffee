@@ -1,8 +1,6 @@
 export default transform = (code) ->
-  acorn     = require 'acorn'
-  escodegen = require 'escodegen'
-  reify     = require 'reify/lib/transform'
-
-  ast = acorn.parse code
-  reify ast, ast: true
-  escodegen.generate ast
+  out = require('babel-core').transform code,
+    plugins: [
+      ['transform-es2015-modules-commonjs', interop: false]
+    ]
+  out.code
