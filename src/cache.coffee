@@ -39,8 +39,12 @@ requireCached = (dir) ->
   tempFile  = path.resolve path.join dir, ".sake_#{Date.now()}.js"
   fs.linkSync (cachePath dir), tempFile
 
-  require tempFile        # Require cached Sakefile
-  fs.unlinkSync tempFile  # Cleanup
+  try
+    require tempFile     # Require cached Sakefile
+  catch err
+
+  fs.unlinkSync tempFile # Ensure link is cleaned up
+  throw err if err?      # Throw if failed to require Sakefile
 
 
 # Load cached Sakefile unless it's not newer than source
