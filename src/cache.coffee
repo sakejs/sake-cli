@@ -1,5 +1,5 @@
-import fs   from 'fs'
-import path from 'path'
+import fs   from  'fs'
+import path from  'path'
 
 import transform from './transform'
 
@@ -35,11 +35,15 @@ write = (dir, code) ->
 
 # Require cached Sakefile such that require and other Node machinery work
 requireCached = (dir) ->
+  # Symlink cached Sakefile back into Sakefile dir
   tempFile  = path.resolve path.join dir, ".sake_#{Date.now()}.js"
   fs.linkSync (cachePath dir), tempFile
-  require tempFile       # Require cached Sakefile, from Sakefile directory
-  fs.unlink tempFile, -> # Cleanup, ignoring results
 
+  # Require cached Sakefile
+  require tempFile
+
+  # Cleanup on exit
+  process.addListener 'exit', -> fs.unlinkSync tempFile
 
 # Load cached Sakefile unless it's not newer than source
 load = (dir, file) ->
