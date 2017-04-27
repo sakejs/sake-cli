@@ -36,7 +36,7 @@ write = (dir, code) ->
 # Require cached Sakefile such that require and other Node machinery work
 requireCached = (dir) ->
   # Symlink cached Sakefile back into Sakefile dir
-  tempFile  = path.resolve path.join dir, ".sake_#{Date.now()}.js"
+  tempFile  = path.resolve path.join dir, "__Sakefile.js"
   fs.linkSync (cachePath dir), tempFile
 
   try
