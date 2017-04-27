@@ -1,6 +1,9 @@
 export default transform = (code) ->
-  out = require('babel-core').transform code,
+  babel     = require 'babel-core'
+  esModules = require 'babel-plugin-transform-es2015-modules-commonjs'
+
+  out = babel.transform code,
     plugins: [
-      ['transform-es2015-modules-commonjs', interop: false]
+      [esModules, loose: true]
     ]
   out.code
