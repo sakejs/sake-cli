@@ -48,7 +48,7 @@
     "babel-core": "6.24.1",
     "babel-plugin-transform-es2015-modules-commonjs": "6.24.1",
     "find-coffee": "0.1.0",
-    "sake-core": "1.4.3",
+    "sake-core": "1.4.4",
     "yargs": "7.1.0"
   },
   "devDependencies": {
