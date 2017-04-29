@@ -2,7 +2,8 @@ import fs    from 'fs'
 import sake  from 'sake-core'
 import yargs from 'yargs'
 
-import load from './load'
+import cache from './cache'
+import load  from './load'
 import {findSakefile, missingTask, printTasks} from './utils'
 import {version} from '../package.json'
 
@@ -36,19 +37,15 @@ export default run = ->
   # Install Sake globals
   sake.install()
 
-  try
-    require '.sake/Sakefile.js'
-    return
-  catch err
-
   # Load Sakefile
-  switch file
-    when 'Cakefile'
-      load.Cakefile dir, file
-    when 'Sakefile', 'Sakefile.js'
-      load.Sakefile dir, file
-    when 'Sakefile.ts'
-      load.SakefileTs dir, file
+  unless cache.load dir, file
+    switch file
+      when 'Cakefile'
+        load.Cakefile dir, file
+      when 'Sakefile', 'Sakefile.js'
+        load.Sakefile dir, file
+      when 'Sakefile.ts'
+        load.SakefileTs dir, file
 
   # Bail if no tasks specified
   return printTasks dir, file unless argv._.length
