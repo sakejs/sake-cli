@@ -56,9 +56,9 @@
     "coffee-script": "1.12.5",
     "mz": "2.6.0",
     "sake-bundle": "0.4.21",
-    "sake-outdated": "0.1.21",
+    "sake-outdated": "0.1.22",
     "sake-publish": "0.1.12",
     "sake-test": "0.1.5",
-    "sake-version": "0.1.18"
+    "sake-version": "0.1.19"
   }
 }
