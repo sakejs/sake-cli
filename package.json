@@ -48,16 +48,16 @@
     "babel-core": "6.24.1",
     "babel-plugin-transform-es2015-modules-commonjs": "6.24.1",
     "find-coffee": "^0.1.0",
-    "sake-core": "^1.4.5",
+    "sake-core": "^1.4.6",
     "yargs": "8.0.1"
   },
   "devDependencies": {
     "bluebird": "3.5.0",
     "coffee-script": "1.12.5",
     "mz": "2.6.0",
-    "sake-bundle": "^0.4.21",
-    "sake-outdated": "^0.1.22",
-    "sake-publish": "^0.1.12",
+    "sake-bundle": "^0.5.1",
+    "sake-outdated": "^0.1.27",
+    "sake-publish": "^0.1.15",
     "sake-test": "^0.1.5",
     "sake-version": "^0.1.19"
   }
