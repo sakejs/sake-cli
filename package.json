@@ -53,11 +53,11 @@
   },
   "devDependencies": {
     "bluebird": "3.5.0",
-    "coffee-script": "1.12.5",
+    "coffee-script": "1.12.6",
     "mz": "2.6.0",
-    "sake-bundle": "^0.5.1",
+    "sake-bundle": "^0.5.2",
     "sake-outdated": "^0.1.27",
-    "sake-publish": "^0.1.15",
+    "sake-publish": "^0.1.16",
     "sake-test": "^0.1.5",
     "sake-version": "^0.1.19"
   }
