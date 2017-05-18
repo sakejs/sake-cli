@@ -46,8 +46,11 @@ loadSakefileTs = (dir, file) ->
   # Try to load from cache
   return if cache.load dir, file
 
+  # Find core typing
+  sakeTypes = require.resolve 'sake-core/sake.d.ts'
+
   # Write straight to cache
-  exec.sync 'tsc --outFile .sake/Sakefile.js Sakefile.ts'
+  exec.sync "tsc --types #{sakeTypes} --outFile .sake/Sakefile.js Sakefile.ts"
   cache.require dir
 
 
