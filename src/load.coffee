@@ -47,9 +47,16 @@ loadSakefileTs = (dir, file) ->
   return if cache.load dir, file
 
   # Write straight to cache
-  exec.sync "tsc --types sake-core --outFile .sake/Sakefile.js Sakefile.ts"
-  cache.require dir
+  {stdout, stderr} = exec.sync "tsc --types sake-core --outFile .sake/Sakefile.js Sakefile.ts", quiet: true
 
+  # Check for and remove annoying error message
+  lines = stdout.split '\n'
+  if ~lines[0].indexOf 'error TS2688'
+    lines.splice 0, 2
+  console.log (stderr + lines.join '\n').trim()
+
+  # Load from cache
+  cache.require dir
 
 export default load =
   Cakefile:   loadCakefile
