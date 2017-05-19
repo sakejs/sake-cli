@@ -48,12 +48,7 @@ loadSakefileTs = (dir, file) ->
 
   # Write straight to cache
   {stdout, stderr} = exec.sync "tsc --types sake-core --outFile .sake/Sakefile.js Sakefile.ts", quiet: true
-
-  # Check for and remove annoying error message
-  lines = stdout.split '\n'
-  if ~lines[0].indexOf 'error TS2688'
-    lines.splice 0, 2
-  console.log (stderr + lines.join '\n').trim()
+  console.log stderr + stdout
 
   # Load from cache
   cache.require dir
