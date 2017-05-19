@@ -83,11 +83,11 @@ task 'gen-promise', '', ->
 task 'gen-mz', '', ->
   mfs = require 'mz/fs'
 
-  exists = yield mfs.exists __filename
+  exists = yield mfs.exists 'Sakefile'
   console.log exists
   exists = yield mfs.exists 'does not exist'
   console.log exists
-  exists = yield mfs.exists __filename
+  exists = yield mfs.exists 'Sakefile'
   console.log exists
   exists = yield mfs.exists 'does not exist'
   console.log exists
@@ -98,10 +98,10 @@ task 'gen-bluebird', '', ->
 
   yield (pfs.statAsync 'does not exist').catch (err) ->
     console.log 'does not exist'
-  stat = yield pfs.statAsync __filename
+  stat = yield pfs.statAsync 'Sakefile'
   console.log 'exists'
 
   yield (pfs.statAsync 'does not exist').catch (err) ->
     console.log 'does not exist'
-  stat = yield pfs.statAsync __filename
+  stat = yield pfs.statAsync 'Sakefile'
   console.log 'exists'
