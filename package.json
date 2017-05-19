@@ -1,6 +1,6 @@
 {
   "name": "sake-cli",
-  "version": "0.5.8",
+  "version": "0.5.9",
   "description": "The Sake command line interface",
   "homepage": "http://github.com/sakejs/sake-cli",
   "bugs": "http://github.com/sakejs/sake-cli/issues",
