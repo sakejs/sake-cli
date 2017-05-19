@@ -1,0 +1,24 @@
+#compdef sake
+
+# sake, version 1.0.0
+
+local curcontext="$curcontext" state line expl ret=1
+typeset -A opt_args
+
+# -f FILE, --file=FILE read tasks from FILE [pavement.py]
+_arguments -C -s -S \
+  '*:target:->target' && ret=0
+
+case "$state" in
+  target)
+    local -a targets
+    if [ -f "Sakefile" ] || [ -f "Cakefile" ] || [ -f "Sakefile.js" ] || [ -f "Sakefile.ts" ]; then
+        targets=( ${${(f)"$(_call_program targets $words[1] 2>/dev/null | grep sake | grep -v 'defines the following' | sed 's/ *#.*//g; s/sake //g')"}})
+        _wanted targets expl 'sake target' compadd -a targets && return 0
+    else
+        _message -e target 'sake target'
+    fi
+  ;;
+esac
+
+return ret

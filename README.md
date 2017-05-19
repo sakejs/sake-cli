@@ -29,10 +29,20 @@ installed `./node_modules/.bin/sake` executable to run your Sake tasks.
 
 To read more about npm scripts, please visit the [npm docs][npm-docs].
 
+# Autocompletion
+Sake ships with a simple [completion function for zsh][compdef] which can
+autocomplete available task names:
+
+```bash
+# Add _sake to your $fpath
+fpath=( path/to/comp/_sake $fpath )
+```
+
 ## License
 [BSD][license-url]
 
 [npm-docs]: https://docs.npmjs.com/misc/scripts
+[compdef]:  https://github.com/sakejs/sake-cli/blob/master/comp/_sake
 
 [build-img]:        https://img.shields.io/travis/sakejs/sake-cli.svg
 [build-url]:        https://travis-ci.org/sakejs/sake-cli
