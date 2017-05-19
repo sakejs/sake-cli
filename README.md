@@ -29,13 +29,13 @@ installed `./node_modules/.bin/sake` executable to run your Sake tasks.
 
 To read more about npm scripts, please visit the [npm docs][npm-docs].
 
-# Autocompletion
+## Autocompletion
 Sake ships with a simple [completion function for zsh][compdef] which can
 autocomplete available task names:
 
 ```bash
-# Add _sake to your $fpath
 fpath=( path/to/comp/_sake $fpath )
+comdef _sake sake
 ```
 
 ## License
