@@ -45,11 +45,11 @@
     "url": "http://github.com/sakejs/sake-cli"
   },
   "dependencies": {
-    "babel-core": "6.24.1",
+    "babel-core": "6.25.0",
     "babel-plugin-transform-es2015-modules-commonjs": "6.24.1",
     "find-coffee": "^0.1.0",
     "sake-core": "^1.5.1",
-    "yargs": "8.0.1"
+    "yargs": "8.0.2"
   },
   "devDependencies": {
     "bluebird": "3.5.0",
