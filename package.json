@@ -46,15 +46,15 @@
   },
   "dependencies": {
     "babel-core": "^6.25.0",
-    "babel-plugin-transform-es2015-modules-commonjs": "6.24.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "6.26.0",
     "find-coffee": "^0.1.0",
     "sake-core": "^1.5.1",
-    "yargs": "^8.0.2"
+    "yargs": "^10.0.3"
   },
   "devDependencies": {
-    "bluebird": "3.5.0",
-    "coffee-script": "1.12.6",
-    "mz": "2.6.0",
+    "bluebird": "3.5.1",
+    "coffee-script": "1.12.7",
+    "mz": "2.7.0",
     "sake-bundle": "^0.6.0",
     "sake-outdated": "^0.1.28",
     "sake-publish": "^0.1.16",
