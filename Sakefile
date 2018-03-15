@@ -5,10 +5,7 @@ use 'sake-test'
 use 'sake-version'
 
 task 'build', 'build project', ->
-  b = new Bundle
-    entry: 'src/cli.coffee'
-    compilers:
-      coffee: version: 1
+  b = new Bundle entry: 'src/cli.coffee'
 
   Promise.all [
     b.write format:  'cli', executable: true
