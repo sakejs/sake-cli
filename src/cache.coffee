@@ -85,6 +85,8 @@ load = (dir, file) ->
 
 
 export default cache =
+  dir:     cacheDir
+  path:    cachePath
   load:    load
   write:   write
   require: requireCached
