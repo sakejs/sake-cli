@@ -3,10 +3,20 @@ import path from  'path'
 
 import transform from './transform'
 
+# Find local node_modules relative to current project
+findNodeModules = (dir) ->
+  while true
+    p = (path.join dir, 'node_modules')
+    if fs.existSync p
+      return p
+    if dir == '/'
+      throw new Error 'Unable to locate node_modules'
+    dir = path.resolve path.join dir, '..'
+
 
 # Path to cache directory
 cacheDir  = (dir) ->
-  path.resolve path.join dir, '.sake'
+  path.join (findNodeModules dir), '.sake'
 
 
 # Path to cache file
