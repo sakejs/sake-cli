@@ -47,18 +47,18 @@
   "dependencies": {
     "babel-core": "^6.26.0",
     "babel-plugin-transform-es2015-modules-commonjs": "6.26.0",
-    "find-coffee": "^0.1.4",
-    "sake-core": "^1.6.0",
+    "find-coffee": "^0.2.0",
+    "sake-core": "^1.6.2",
     "yargs": "^11.0.0"
   },
   "devDependencies": {
     "bluebird": "3.5.1",
     "coffeescript": "2.2.3",
     "mz": "2.7.0",
-    "sake-bundle": "^0.6.4",
+    "sake-bundle": "^0.6.6",
     "sake-outdated": "^0.2.1",
     "sake-publish": "^0.1.16",
-    "sake-test": "^0.1.5",
+    "sake-test": "^0.1.6",
     "sake-version": "^0.1.19"
   }
 }
