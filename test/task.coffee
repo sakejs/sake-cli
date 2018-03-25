@@ -1,20 +1,24 @@
 describe 'task', ->
   it 'should accept action expecting options', ->
-    {stdout} = yield run 'options-empty'
+    {stdout} = yield run 'options'
     stdout.should.equal """
-      { _: [ 'options-empty' ],
+      { _: [ 'options' ],
+        help: false,
+        version: false,
         '$0': '../bin/sake',
-        arguments: [ 'options-empty' ] }
+        arguments: [ 'options' ] }
       """
 
   it 'should accept action expecting only a callback', ->
     {stdout} = yield run 'async'
     stdout.should.equal '[Function: done]'
 
-  it 'should accept action expecting options, callback', ->
+  it 'should accept action expecting options and callback', ->
     {stdout} = yield run 'async-options'
     stdout.should.equal """
       { _: [ 'async-options' ],
+        help: false,
+        version: false,
         '$0': '../bin/sake',
         arguments: [ 'async-options' ] }
       """
