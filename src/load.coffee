@@ -47,7 +47,7 @@ loadSakefileTs = (dir, file) ->
   return if cache.load dir, file
 
   # Write straight to cache
-  exec.sync "tsc --types sake-core --target ES6 --outFile .sake/Sakefile.js Sakefile.ts"
+  exec.sync "tsc --types sake-core --target ES6 --outFile #{cache.path()} Sakefile.ts"
 
   # Load from cache
   cache.require dir
