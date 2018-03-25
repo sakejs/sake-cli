@@ -3,9 +3,6 @@ fs = require 'fs'
 option '-v', '--verbose', 'Verbose option'
 
 task 'options', '', (options) ->
-  console.log options.verbose
-
-task 'options-empty', '', (options) ->
   console.log options
 
 task 'no-description', ->
