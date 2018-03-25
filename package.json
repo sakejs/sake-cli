@@ -55,7 +55,7 @@
     "bluebird": "3.5.1",
     "coffeescript": "2.2.3",
     "mz": "2.7.0",
-    "sake-bundle": "^0.6.6",
+    "sake-bundle": "^0.6.7",
     "sake-outdated": "^0.2.1",
     "sake-publish": "^0.1.16",
     "sake-test": "^0.1.6",
