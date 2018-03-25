@@ -40,7 +40,10 @@ read = (dir) ->
 
 # Read origin dir for cache file
 readOrigin = (dir) ->
-  fs.readFileSync (path.join (cacheDir dir), 'origin'), 'utf8'
+  try
+    fs.readFileSync (path.join (cacheDir dir), 'origin'), 'utf8'
+  catch err # Support older copies of sake
+    dir
 
 
 # Write cache file
