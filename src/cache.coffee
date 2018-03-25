@@ -7,7 +7,7 @@ import transform from './transform'
 findNodeModules = (dir) ->
   while true
     p = (path.join dir, 'node_modules')
-    if fs.existSync p
+    if fs.existsSync p
       return p
     if dir == '/'
       throw new Error 'Unable to locate node_modules'
