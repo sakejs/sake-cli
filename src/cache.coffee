@@ -3,6 +3,7 @@ import path from  'path'
 
 import transform from './transform'
 
+
 # Find local node_modules relative to current project
 findNodeModules = (dir) ->
   while true
@@ -31,9 +32,15 @@ mkdirp = (dir) ->
   catch err
     throw err unless err.code == 'EEXIST'
 
+
 # Read cache file
 read = (dir) ->
   fs.readFileSync (cachePath dir), 'utf8'
+
+
+# Read origin dir for cache file
+readOrigin = (dir) ->
+  fs.readFileSync (path.join (cacheDir dir), 'origin'), 'utf8'
 
 
 # Write cache file
@@ -41,6 +48,7 @@ write = (dir, code) ->
   mkdirp cacheDir dir
   transformed = transform code
   fs.writeFileSync (cachePath dir), transformed, 'utf8'
+  fs.writeFileSync (path.join (cacheDir dir), 'origin'), dir, 'utf8'
 
 
 # Require cached Sakefile such that require and other Node machinery work
@@ -57,7 +65,7 @@ requireCached = (dir) ->
   throw err if err?      # Throw if failed to require Sakefile
 
 
-# Load cached Sakefile unless it's not newer than source
+# Load cached Sakefile unless it's older than source or from different Sakefile
 load = (dir, file) ->
   try
     cached = fs.statSync cachePath dir
@@ -66,7 +74,7 @@ load = (dir, file) ->
     return false if err.code == 'ENOENT'
     throw err
 
-  if cached.mtime > source.mtime
+  if cached.mtime > source.mtime and dir == (readOrigin dir)
     requireCached dir
     true
   else
@@ -75,5 +83,5 @@ load = (dir, file) ->
 
 export default cache =
   load:    load
-  require: requireCached
   write:   write
+  require: requireCached
