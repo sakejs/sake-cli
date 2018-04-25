@@ -1,7 +1,8 @@
 import path from 'path'
 import fs   from 'fs'
 
-import {tasks} from 'sake-core'
+import {tasks}   from 'sake-core'
+import {options} from 'sake-core'
 
 # Ensure local node_modules bin is on the front of $PATH
 export preferLocalModules = ->
@@ -39,7 +40,15 @@ export printTasks = (dir, file) ->
     desc   = if task.description then "# #{task.description}" else ''
     console.log "sake #{name}#{spaces} #{desc}"
 
-  # console.log oparse.help() if switches.length
+  if Object.keys(options).length > 0
+    for k,v of options
+      if v.flag?
+        switches = "#{v.letter}, #{v.flag}"
+      else
+        switches = "#{v.letter}"
+      spaces = 20 - switches.length
+      spaces = if spaces > 0 then Array(spaces + 1).join(' ') else ''
+      console.log "  #{switches}#{spaces} #{v.description ? ''}"
 
 # Print an error and exit when attempting to use an invalid task/option.
 export fatalError = (message) ->
