@@ -11,6 +11,3 @@ task 'build', 'build project', ->
     b.write format:  'cli', executable: true
     b.write formats: ['cjs', 'es']
   ]
-
-option '-a', '--ass', 'ass man'
-option '--butt', 'butt man'
