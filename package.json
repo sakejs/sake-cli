@@ -52,6 +52,7 @@
   "devDependencies": {
     "bluebird": "^3.5.1",
     "coffeescript": "^2.2.4",
+    "es-is": "^3.3.10",
     "mz": "^2.7.0",
     "sake-bundle": "^0.6.7",
     "sake-outdated": "^0.3.0",

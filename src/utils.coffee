@@ -1,8 +1,9 @@
 import path from 'path'
 import fs   from 'fs'
 
-import {tasks}   from 'sake-core'
-import {options} from 'sake-core'
+import isFunction from 'es-is/function'
+import {options}  from 'sake-core'
+import {tasks}    from 'sake-core'
 
 # Ensure local node_modules bin is on the front of $PATH
 export preferLocalModules = ->
@@ -40,13 +41,16 @@ export printTasks = (dir, file) ->
     desc   = if task.description then "# #{task.description}" else ''
     console.log "sake #{name}#{spaces} #{desc}"
 
-  if Object.keys(options).length > 0
-    for k,v of options
+  if Object.keys(options).length > 1
+    console.log()
+    for own k,v of options
+      continue if isFunction v
+
       if v.flag?
         switches = "#{v.letter}, #{v.flag}"
       else
         switches = "#{v.letter}"
-      spaces = 20 - switches.length
+      spaces = 18 - switches.length
       spaces = if spaces > 0 then Array(spaces + 1).join(' ') else ''
       console.log "  #{switches}#{spaces} #{v.description ? ''}"
 
