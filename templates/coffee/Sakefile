@@ -1,0 +1,8 @@
+use('sake-bundle')
+use('sake-outdated')
+use('sake-publish')
+use('sake-version')
+
+task('build', 'Build project', () => {
+  bundle.write()
+})

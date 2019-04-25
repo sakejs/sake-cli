@@ -4,6 +4,7 @@ import yargs from 'yargs'
 
 import cache from './cache'
 import load  from './load'
+import init  from './init'
 import {findSakefile, missingTask, printTasks} from './utils'
 import {version} from '../package.json'
 
@@ -14,12 +15,6 @@ import {version} from '../package.json'
 export default run = ->
   # Save record of original directory
   global.__originalDirname = fs.realpathSync '.'
-
-  # Search for sakefile
-  {dir, file} = findSakefile __originalDirname
-
-  # Change dir to match Sakefile location
-  process.chdir dir
 
   # Process arguments
   argv  = yargs.argv
@@ -33,6 +28,19 @@ export default run = ->
   if argv.version or argv.v and not argv._.length
     console.log "#{version} (core: #{sake.version})"
     process.exit 0
+
+  # Search for sakefile
+  try
+    {dir, file} = findSakefile __originalDirname
+  catch err
+    if tasks[0] == 'init'
+      return init()
+    else
+      console.log(err.toString())
+      process.exit 1
+
+  # Change dir to match Sakefile location
+  process.chdir dir
 
   # Install Sake globals
   sake.install()
